@@ -1,12 +1,35 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import classes from '../../index.module.css';
 const Host = () => {
+    const activeStyles = {
+        fontWeight: 'bold',
+        textDecoration: 'underline',
+        color: '#161616',
+    };
     return (
         <>
             <nav className={classes['host-nav']}>
-                <Link to='/host'>Dashboard</Link>
-                <Link to='/host/income'>Income</Link>
-                <Link to='/host/reviews'>Reviews</Link>
+                <NavLink
+                    style={({ isActive }) => (isActive ? activeStyles : null)}
+                    to='/host'
+                    end
+                >
+                    Dashboard
+                </NavLink>
+                <NavLink
+                    style={({ isActive }) => (isActive ? activeStyles : null)}
+                    to='/host/income'
+                    end
+                >
+                    Income
+                </NavLink>
+                <NavLink
+                    style={({ isActive }) => (isActive ? activeStyles : null)}
+                    to='/host/reviews'
+                    end
+                >
+                    Reviews
+                </NavLink>
             </nav>
             <Outlet />
         </>
