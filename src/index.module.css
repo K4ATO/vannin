@@ -67,6 +67,12 @@ header .login-link {
     align-items: center;
 }
 
+a.active-link {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #161616;
+}
+
 nav {
     display: flex;
 }
