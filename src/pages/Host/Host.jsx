@@ -19,21 +19,18 @@ const Host = () => {
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
                     to='vans'
-                    end
                 >
                     Vans
                 </NavLink>
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
                     to='income'
-                    end
                 >
                     Income
                 </NavLink>
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
                     to='reviews'
-                    end
                 >
                     Reviews
                 </NavLink>

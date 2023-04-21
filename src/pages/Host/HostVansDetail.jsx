@@ -1,22 +1,14 @@
 import classes from '../../index.module.css';
-import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import VansDetailsNav from './VansDetailsNav';
-const HostVansDetail = () => {
-    const params = useParams();
-    const [currentVan, setCurrentVan] = useState();
+import { getHostVans } from '../../utility/vansApi';
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(`/api/host/vans/${params.id}`);
-            const data = await response.json();
-            setCurrentVan(data.vans);
-        };
-        fetchData();
-    }, []);
-    if (!currentVan) {
-        return <h1>Loading...</h1>;
-    }
+export const hostVansDetailLoader = ({ params }) => {
+    return getHostVans(params.id);
+};
+
+const HostVansDetail = () => {
+    const currentVan = useLoaderData();
 
     return (
         <section>

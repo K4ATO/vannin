@@ -1,21 +1,14 @@
-import { useParams, Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, useLocation, useLoaderData } from 'react-router-dom';
 import classes from '../../index.module.css';
+import { getVans } from '../../utility/vansApi';
+
+export const vanLoader = ({ params }) => {
+    return getVans(params.id);
+};
+
 const VanDetail = () => {
-    const params = useParams();
-
-    const [van, setVan] = useState();
-
+    const van = useLoaderData();
     const location = useLocation();
-
-    useEffect(() => {
-        const fetchData = async (id) => {
-            const response = await fetch(`/api/vans/${id}`);
-            const data = await response.json();
-            setVan(data.vans);
-        };
-        fetchData(params.id);
-    }, [params.id]);
 
     const search = location.state?.searchParams || '';
     return (
@@ -27,28 +20,25 @@ const VanDetail = () => {
             >
                 &larr; <span>Back to {location.state.type} vans</span>
             </Link>
-            {van ? (
-                <div className={classes['van-detail']}>
-                    <img src={van.imageUrl} />
-                    <i
-                        className={`${classes['van-type']} ${
-                            classes[van.type]
-                        } selected`}
-                    >
-                        {van.type}
-                    </i>
-                    <h2>{van.name}</h2>
-                    <p className={classes['van-price']}>
-                        <span>${van.price}</span>/day
-                    </p>
-                    <p>{van.description}</p>
-                    <button className={classes['link-button']}>
-                        Rent this van
-                    </button>
-                </div>
-            ) : (
-                <h2>Loading...</h2>
-            )}
+
+            <div className={classes['van-detail']}>
+                <img src={van.imageUrl} />
+                <i
+                    className={`${classes['van-type']} ${
+                        classes[van.type]
+                    } selected`}
+                >
+                    {van.type}
+                </i>
+                <h2>{van.name}</h2>
+                <p className={classes['van-price']}>
+                    <span>${van.price}</span>/day
+                </p>
+                <p>{van.description}</p>
+                <button className={classes['link-button']}>
+                    Rent this van
+                </button>
+            </div>
         </div>
     );
 };
