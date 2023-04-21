@@ -11,28 +11,28 @@ const Host = () => {
             <nav className={classes['host-nav']}>
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
-                    to='/host'
+                    to='.'
                     end
                 >
                     Dashboard
                 </NavLink>
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
-                    to='/host/vans'
+                    to='vans'
                     end
                 >
                     Vans
                 </NavLink>
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
-                    to='/host/income'
+                    to='income'
                     end
                 >
                     Income
                 </NavLink>
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
-                    to='/host/reviews'
+                    to='reviews'
                     end
                 >
                     Reviews
