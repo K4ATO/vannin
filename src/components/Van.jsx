@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 const Van = (props) => {
     return (
         <div key={props.id} className={classes['van-tile']}>
-            <Link to={`/vans/${props.id}`}>
+            <Link
+                to={props.id}
+                state={{
+                    searchParams: `?${props.searchParams}`,
+                    type: props.typeFilter,
+                }}
+            >
                 <img src={props.imageUrl} />
                 <div className={classes['van-info']}>
                     <h3>{props.name}</h3>

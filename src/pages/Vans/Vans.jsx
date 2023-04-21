@@ -74,6 +74,8 @@ const Vans = () => {
                                   name={van.name}
                                   price={van.price}
                                   type={van.type}
+                                  searchParams={searchParams.toString()}
+                                  typeFilter={typeFilter}
                               />
                           ))
                     : vans &&

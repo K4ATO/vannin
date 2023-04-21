@@ -1,10 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import classes from '../../index.module.css';
 const VanDetail = () => {
     const params = useParams();
 
     const [van, setVan] = useState();
+
+    const location = useLocation();
 
     useEffect(() => {
         const fetchData = async (id) => {
@@ -15,8 +17,16 @@ const VanDetail = () => {
         fetchData(params.id);
     }, [params.id]);
 
+    const search = location.state?.searchParams || '';
     return (
         <div className={classes['van-detail-container']}>
+            <Link
+                to={`..${search}`}
+                relative='path'
+                className={classes['back-button']}
+            >
+                &larr; <span>Back to {location.state.type} vans</span>
+            </Link>
             {van ? (
                 <div className={classes['van-detail']}>
                     <img src={van.imageUrl} />
