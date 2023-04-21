@@ -2,8 +2,10 @@ import classes from '../../index.module.css';
 import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import VansDetailsNav from './VansDetailsNav';
 import { getHostVans } from '../../utility/vansApi';
+import { requireAuth } from '../../utility/requireAuth';
 
-export const hostVansDetailLoader = ({ params }) => {
+export const hostVansDetailLoader = async ({ params, request }) => {
+    await requireAuth(request);
     return getHostVans(params.id);
 };
 
