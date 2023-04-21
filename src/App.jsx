@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Vans from './pages/Vans/Vans';
+import Vans, { vansLoader } from './pages/Vans/Vans';
 import VanDetail from './pages/Vans/VanDetail';
 import './server';
 import Layout from './Layout/Layout';
@@ -20,11 +20,13 @@ import HostVanInfo from './pages/Host/HostVanInfo';
 import HostVanPricing from './pages/Host/HostVanPricing';
 import HostVanPhotos from './pages/Host/HostVanPhotos';
 import NotFound from './pages/NotFound';
-
+import Error from './components/Error';
+import Login from './pages/Login';
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/host' element={<Host />}>
                 <Route index element={<Dashboard />} />
                 <Route path='income' element={<Income />} />
@@ -36,7 +38,12 @@ const router = createBrowserRouter(
                     <Route path='photos' element={<HostVanPhotos />} />
                 </Route>
             </Route>
-            <Route path='/vans' element={<Vans />} />
+            <Route
+                path='/vans'
+                element={<Vans />}
+                errorElement={<Error />}
+                loader={vansLoader}
+            />
             <Route path='/vans/:id/' element={<VanDetail />} />
             <Route path='/about' element={<About />} />
             <Route path='*' element={<NotFound />} />
