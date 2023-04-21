@@ -31,8 +31,8 @@ const HostVans = () => {
 
     return (
         <section>
-            <h1 className='host-vans-title'>Your listed vans</h1>
-            <div className='host-vans-list'>
+            <h1 className={classes['host-vans-title']}>Your listed vans</h1>
+            <div className={classes['host-vans-list']}>
                 {vans.length > 0 ? (
                     <section>{hostVansEls}</section>
                 ) : (
