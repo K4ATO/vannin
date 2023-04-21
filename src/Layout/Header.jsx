@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import classes from '../index.module.css';
+
 const Header = () => {
     return (
         <header>
@@ -31,6 +32,12 @@ const Header = () => {
                 >
                     About
                 </NavLink>
+                <Link to='login' className={classes['login-link']}>
+                    <img
+                        src='../assets/images/avatar-icon.png'
+                        className={classes['login-icon']}
+                    />
+                </Link>
             </nav>
         </header>
     );
