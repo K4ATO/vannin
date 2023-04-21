@@ -18,6 +18,13 @@ const Host = () => {
                 </NavLink>
                 <NavLink
                     style={({ isActive }) => (isActive ? activeStyles : null)}
+                    to='/host/vans'
+                    end
+                >
+                    Vans
+                </NavLink>
+                <NavLink
+                    style={({ isActive }) => (isActive ? activeStyles : null)}
                     to='/host/income'
                     end
                 >
