@@ -85,10 +85,8 @@ createServer({
         this.namespace = 'api';
         this.passthrough('https://firestore.googleapis.com/**');
         this.logging = false;
-        // this.timing = 2000
 
         this.get('/vans', (schema, request) => {
-            // return new Response(400, {}, {error: "Error fetching data"})
             return schema.vans.all();
         });
 
@@ -98,12 +96,10 @@ createServer({
         });
 
         this.get('/host/vans', (schema, request) => {
-            // Hard-code the hostId for now
             return schema.vans.where({ hostId: '123' });
         });
 
         this.get('/host/vans/:id', (schema, request) => {
-            // Hard-code the hostId for now
             const id = request.params.id;
             return schema.vans.findBy({ id, hostId: '123' });
         });
@@ -112,9 +108,6 @@ createServer({
             '/login',
             (schema, request) => {
                 const { email, password } = JSON.parse(request.requestBody);
-                // This is an extremely naive version of authentication. Please don't
-                // do this in the real world, and never save raw text passwords
-                // in your database 😇
                 const foundUser = schema.users.findBy({ email, password });
                 if (!foundUser) {
                     return new Response(
@@ -124,7 +117,6 @@ createServer({
                     );
                 }
 
-                // At the very least, don't send the password back to the client 😅
                 foundUser.password = undefined;
                 return {
                     user: foundUser,
